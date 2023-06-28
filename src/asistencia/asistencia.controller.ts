@@ -1,7 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe, Query } from '@nestjs/common';
+
 import { AsistenciaService } from './asistencia.service';
 import { CreateAsistenciaDto } from './dto/create-asistencia.dto';
 import { UpdateAsistenciaDto } from './dto/update-asistencia.dto';
+import { SearchFilters } from './dto/search-filters.dto';
+import { Asistencia } from './entities/asistencia.entity';
 
 @Controller('asistencia')
 export class AsistenciaController {
@@ -13,22 +16,30 @@ export class AsistenciaController {
   }
 
   @Get()
-  findAll() {
-    return this.asistenciaService.findAll();
+  async findAll(@Query() searchFilters:SearchFilters):Promise<{}> {
+    return{ 
+      assistants: await this.asistenciaService.findAll(searchFilters),
+      total: await this.asistenciaService.count() 
+    };
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.asistenciaService.findOne(+id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.asistenciaService.findOne(id);
+  // }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAsistenciaDto: UpdateAsistenciaDto) {
-    return this.asistenciaService.update(+id, updateAsistenciaDto);
+  async update(
+    @Param('id', ParseUUIDPipe) id: string, 
+    @Body() updateAsistenciaDto: UpdateAsistenciaDto
+  ):Promise<Asistencia> {
+    return this.asistenciaService.update(id, updateAsistenciaDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.asistenciaService.remove(+id);
+  async remove(
+    @Param('id', ParseUUIDPipe) id: string
+  ):Promise<Asistencia> {
+    return this.asistenciaService.remove(id);
   }
 }
