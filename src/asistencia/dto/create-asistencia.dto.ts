@@ -21,7 +21,7 @@ export class CreateAsistenciaDto {
     idNumber:string
     
     @IsString()
-    @MinLength(1)
+    @MinLength(7)
     @MaxLength(10)
     mobilePhone:string;
     
