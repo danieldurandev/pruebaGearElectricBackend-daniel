@@ -17,22 +17,22 @@ export class AsistenciaService {
   ){}
 
   async create(createAsistenciaDto: CreateAsistenciaDto):Promise<Asistencia> {
-    const {idNumber, email, mobilePhone} = createAsistenciaDto
+    const {id_number, email, mobile_phone} = createAsistenciaDto
 
-    let assistant = await this.asistenciaRepository.findOneBy({idNumber})
+    let assistant = await this.asistenciaRepository.findOneBy({id_number})
 
     if(assistant)
-      throw new BadRequestException(`A user with this idNumber (${assistant.idNumber}) already exists`)
+      throw new BadRequestException(`A user with this id_number (${assistant.id_number}) already exists`)
 
     assistant = await this.asistenciaRepository.findOneBy({email})
 
     if(assistant)
       throw new BadRequestException(`A user with this email (${assistant.email}) already exists`)
 
-    assistant = await this.asistenciaRepository.findOneBy({mobilePhone})
+    assistant = await this.asistenciaRepository.findOneBy({mobile_phone})
 
     if(assistant)
-      throw new BadRequestException(`A user with this phone number (${assistant.mobilePhone}) already exists`)
+      throw new BadRequestException(`A user with this phone number (${assistant.mobile_phone}) already exists`)
 
     assistant =  this.asistenciaRepository.create(createAsistenciaDto)
     await this.asistenciaRepository.save(assistant)
@@ -41,19 +41,43 @@ export class AsistenciaService {
 
   async findAll(searchFilters:SearchFilters):Promise<Asistencia[]> {
 
-    const {names, lastNames, typeOfDocument, idNumber, email } = searchFilters
+    const {names, last_names, type_of_document, id_number, email } = searchFilters
 
-  return await this.asistenciaRepository.findBy({
-    names: Like(`%${names}%`),
-    lastNames: Like(`%${lastNames}%`),
-    typeOfDocument: Like(`%${typeOfDocument}%`),
-    idNumber: Like(`%${idNumber}%`),
-    email: Like(`%${email}%`),
-  })
-  }
+    const queryBuilder = this.asistenciaRepository.createQueryBuilder()
+
+
+    if(names.length>0)
+      queryBuilder.where("LOWER(names) LIKE :names", {
+          names:`%${names.toLocaleLowerCase()}%`
+      })
+
+    if(last_names.length>0)
+      queryBuilder.where("LOWER(last_names) LIKE :last_names", {
+          last_names:`%${last_names.toLocaleLowerCase()}%`
+      })
+     
+    if(email.length>0)
+      queryBuilder.where("LOWER(email) LIKE :email", {
+          email:`%${email.toLocaleLowerCase()}%`
+      })
+
+      if(id_number.length>0)
+      queryBuilder.where("LOWER(id_number) LIKE :id_number", {
+          id_number:`%${id_number.toLocaleLowerCase()}%`
+      })
+
+
+      if(type_of_document.length>0)
+      queryBuilder.where("LOWER(type_of_document) LIKE :type_of_document", {
+          type_of_document:`%${type_of_document.toLocaleLowerCase()}%`
+      })
+
+    return await queryBuilder.getMany()
+}
+
 
   async count():Promise<number> {
-    return await this.asistenciaRepository.countBy({isActive: true})
+    return await this.asistenciaRepository.countBy({is_active: true})
   }
 
   // async findOne(id: string):Promise<Asistencia> {

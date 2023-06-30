@@ -10,25 +10,25 @@ export class CreateAsistenciaDto {
     @IsString()
     @MinLength(1)
     @MaxLength(100)
-    lastNames:string;
+    last_names:string;
 
     @IsIn(["C.C", "C.E", "Pasaporte"])
-    typeOfDocument:string;
+    type_of_document:string;
 
     @IsString()
     @MinLength(7)
     @MaxLength(30)
-    idNumber:string
+    id_number:string
     
     @IsString()
     @MinLength(7)
     @MaxLength(10)
-    mobilePhone:string;
+    mobile_phone:string;
     
     @IsEmail()
     email:string;
 
     @IsOptional()
     @IsBoolean()
-    isActive:boolean;
+    is_active:boolean;
 }

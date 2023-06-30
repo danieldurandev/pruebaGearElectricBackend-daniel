@@ -9,7 +9,7 @@ export class SearchFilters {
 
     @IsOptional()
     @Type(()=>String)
-    lastNames:string = "";
+    last_names:string = "";
 
     @IsOptional()
     @Type(()=>String)
@@ -17,10 +17,10 @@ export class SearchFilters {
 
     @IsOptional()
     @Type(()=>String)
-    typeOfDocument:string = "";
+    type_of_document:string = "";
 
     @IsOptional()
     @Type(()=>String)
-    idNumber:string = ""
+    id_number:string = ""
 
 }

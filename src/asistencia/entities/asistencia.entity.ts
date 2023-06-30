@@ -10,20 +10,20 @@ export class Asistencia {
     names:string;
 
     @Column("text")
-    lastNames:string;
+    last_names:string;
 
     @Column("text", {default: "C.C"})
-    typeOfDocument:string;
+    type_of_document:string;
 
     @Column("text", {unique: true})
-    idNumber:string
+    id_number:string
     
     @Column("text", {unique: true})
-    mobilePhone:string;
+    mobile_phone:string;
     
     @Column("text", {unique: true})
     email:string;
 
     @Column("bool", {default: true})
-    isActive:boolean;
+    is_active:boolean;
 }
