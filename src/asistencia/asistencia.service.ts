@@ -61,17 +61,19 @@ export class AsistenciaService {
           email:`%${email.toLocaleLowerCase()}%`
       })
 
-      if(id_number.length>0)
-      queryBuilder.where("LOWER(id_number) LIKE :id_number", {
-          id_number:`%${id_number.toLocaleLowerCase()}%`
+    if(id_number.length>0)
+      queryBuilder.where("id_number LIKE :id_number", {
+          id_number:`%${id_number}%`
       })
 
 
-      if(type_of_document.length>0)
+    if(type_of_document.length>0)
       queryBuilder.where("LOWER(type_of_document) LIKE :type_of_document", {
           type_of_document:`%${type_of_document.toLocaleLowerCase()}%`
       })
 
+    queryBuilder.orderBy("names", "ASC")
+    
     return await queryBuilder.getMany()
 }
 
