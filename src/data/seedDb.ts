@@ -1,4 +1,4 @@
-export const seed = [
+export const seedDb = [
   {
     names: 'Oscar Estevan',
     last_names: 'Martines Bolivar',
@@ -6,6 +6,7 @@ export const seed = [
     id_number: '27333333',
     mobile_phone: '3209876652',
     email: 'oscarestevan@gmail.com',
+    is_active:true
   },
   {
     names: 'Juan Carlos',
@@ -14,6 +15,7 @@ export const seed = [
     id_number: '1234567890',
     mobile_phone: '3001234567',
     email: 'juancarlos@gmail.com',
+    is_active:true
   },
   {
     names: 'Maria Fernanda',
@@ -22,6 +24,7 @@ export const seed = [
     id_number: '0987654321',
     mobile_phone: '3109876543',
     email: 'mariafernanda@gmail.com',
+    is_active:true
   },
   {
     names: 'Pedro Antonio',
@@ -30,6 +33,7 @@ export const seed = [
     id_number: '111222333444',
     mobile_phone: '3201112222',
     email: 'pedroantonio@gmail.com',
+    is_active:true
   },
   {
     names: 'Ana Maria',
@@ -38,6 +42,7 @@ export const seed = [
     id_number: '555666777888',
     mobile_phone: '3155556666',
     email: 'anamaria@gmail.com',
+    is_active:true
   },
   {
     names: 'Carlos Alberto',
@@ -46,6 +51,7 @@ export const seed = [
     id_number: '999000111222',
     mobile_phone: '3189990000',
     email: 'carlosalberto@gmail.com',
+    is_active:true
   },
   {
     names: 'Luisa Fernanda',
@@ -54,6 +60,7 @@ export const seed = [
     id_number: '333444555666',
     mobile_phone: '3123334444',
     email: 'luisafernanda@gmail.com',
+    is_active:true
   },
   {
     names: 'Jorge Andres',
@@ -62,6 +69,7 @@ export const seed = [
     id_number: '777888999000',
     mobile_phone: '3177778888',
     email: 'jorgeandres@gmail.com',
+    is_active:true
   },
   {
     names: 'Sofia',
@@ -70,6 +78,7 @@ export const seed = [
     id_number: '222333444555',
     mobile_phone: '3132223333',
     email: 'sofia@gmail.com',
+    is_active:true
   },
   {
     names: 'Miguel Angel',
@@ -78,5 +87,6 @@ export const seed = [
     id_number: '666777888999',
     mobile_phone: '3196667777',
     email: 'miguelangel@gmail.com',
+    is_active:true
   },
 ];

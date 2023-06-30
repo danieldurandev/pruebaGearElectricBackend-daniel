@@ -11,7 +11,8 @@ import { Asistencia } from './entities/asistencia.entity';
     TypeOrmModule.forFeature([Asistencia])
   ],
   exports: [
-    TypeOrmModule
+    TypeOrmModule,
+    AsistenciaService
   ]
 })
 export class AsistenciaModule {}
